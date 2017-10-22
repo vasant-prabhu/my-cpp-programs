@@ -73,19 +73,30 @@ void deleteNode(Node** q,int val)
 {
    Node *temp = *q;
    Node *prev =NULL;
-   while (temp != NULL)
+   
+   //its the first node
+   if(temp->data == val)
    {
-      if (temp->data == val)
-      {
-      //you are at the node you want to delete
-      prev->next = temp->next;
-      delete(temp); 
-      break;  
-      }
-      prev = temp;
       temp=temp->next;
+      free(*q);
+      *q=temp;
    }
-
+   else
+   {
+      while (temp != NULL)
+      {
+         //intermediate node 
+         if (temp->data == val)
+         {
+         //you are at the node you want to delete
+         prev->next = temp->next;
+         delete(temp); 
+         break;  
+         }
+         prev = temp;
+         temp=temp->next;
+      }
+   }
 }
    
    
