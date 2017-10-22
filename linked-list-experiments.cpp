@@ -1,4 +1,4 @@
-//Create  a node . Add node
+//Create  a node . Add node , delete node ,reverse a node
 
 #include<iostream>
 #include<conio.h>
@@ -14,6 +14,8 @@ struct node* next;
 void addNode(Node**,int);
 void printNodes(Node*);
 void deleteNode(Node**,int val);
+void reverse_node_iterative(Node**);
+void reverse_node_recursive(Node**);
 
 int main()
 { 
@@ -27,8 +29,11 @@ int main()
    std::cout<<"delete a node"<<endl;
    deleteNode(&q,21);
    printNodes(q);
-   std::cout<<"vasant"<<endl;
-   
+   std::cout<<"now,reverse the linked list "<<endl;
+   reverse_node_iterative(&q);
+   printNodes(q);
+   std::cout<<"now,again reverse the linked list "<<endl;
+   reverse_node_recursive(&q);
    getch();
    return 0;
 }
@@ -99,6 +104,37 @@ void deleteNode(Node** q,int val)
    }
 }
    
+void reverse_node_iterative(Node **head)
+{
+   Node *prev=NULL;
+   Node *next=NULL;
+   Node *current= *head;
+   
+   while(current!=NULL)
+   {
+      next = current->next;
+      current->next=prev;
+      prev=current;
+      current = next;
+   }
+   *head=prev; 
+}
+
+void reverse_node_recursive(Node **head)
+{
+   Node *prev=NULL;
+   Node *temp=*head;
+   if (temp == NULL)
+   {
+   *head = temp;
+   return;
+   }   
+   reverse_node_recursive(&(temp->next));
+   temp->next->next=temp;
+   
+
+
+}
    
    
    
