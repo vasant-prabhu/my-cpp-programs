@@ -13,7 +13,7 @@ class Cents
 		int getCents() const {return m_cents;}
 		friend Cents operator+(const Cents &c1,const Cents &c2)
 		{
-			return (c1.m_cents+c2.m_cents);
+			return Cents(c1.m_cents+c2.m_cents);
 		}
 };
 
